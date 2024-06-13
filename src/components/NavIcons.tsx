@@ -11,6 +11,16 @@ const NavIcons = () => {
 
   const handleProfileClick = () => {
     setIsProfileOpen((prev) => !prev);
+    if (isCartOpen) {
+      setIsCartOpen(false);
+    }
+  };
+
+  const handleCartClick = () => {
+    setIsCartOpen((prev) => !prev);
+    if (isProfileOpen) {
+      setIsProfileOpen(false);
+    }
   };
 
   return (
@@ -29,7 +39,7 @@ const NavIcons = () => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.3 }}
-          className="absolute left-[-25%] top-12 shadow-[0_3px_10px_rgb(0,0,0,0.2)] p-4 z-20 rounded-md text-sm"
+          className="absolute left-[-25%] top-12 shadow-[0_3px_10px_rgb(0,0,0,0.2)] p-4 z-20 rounded-md text-sm bg-white"
         >
           <Link href={'/'}>Profile</Link>
           <div className="mt-2 cursor-pointer">Logout</div>
@@ -42,14 +52,8 @@ const NavIcons = () => {
         height={22}
         className="cursor-pointer"
       />
-      <div className="relative cursor-pointer">
-        <Image
-          src={'/cart.png'}
-          alt=""
-          width={22}
-          height={22}
-          onClick={() => setIsCartOpen((prev) => !prev)}
-        />
+      <div className="relative cursor-pointer" onClick={handleCartClick}>
+        <Image src={'/cart.png'} alt="" width={22} height={22} />
         <div className="absolute -top-4 -right-4 h-6 w-6 bg-primaryColor rounded-full flex items-center justify-center text-white text-sm">
           2
         </div>
